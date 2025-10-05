@@ -1,16 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfpnp0h2brexi"]
+[gd_scene load_steps=3 format=3 uid="uid://dfpnp0h2brexi"]
 
+[ext_resource type="Script" uid="uid://uxtdk0wjttp4" path="res://casting.gd" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://qqt7y3kinnql" path="res://fishingrod.png" id="1_wtcfe"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="ForearmAndRod" type="Sprite2D" parent="."]
 position = Vector2(500, 300)
-rotation = 0.5235988
+rotation = 0.699877
 scale = Vector2(2, 2)
 texture = ExtResource("1_wtcfe")
 offset = Vector2(0, -10.5)
+script = ExtResource("1_0e48y")
 
 [node name="Line" type="Line2D" parent="ForearmAndRod"]
 position = Vector2(0, -20)
 scale = Vector2(0.99999994, 0.99999994)
+width = 1.0
