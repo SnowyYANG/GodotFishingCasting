@@ -34,11 +34,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("mouse_left"):
-		print("mouse_left")
 		_start_casting()
 
-	if Input.is_action_just_pressed("ui_subtract"):
-		print("ui_subtract")
+	if Input.is_action_just_pressed("esc_reset"):
 		_reset()
 
 	if Input.is_action_just_pressed("show_data"):
@@ -76,7 +74,6 @@ func _start_casting():
 
 # 🧠 重置状态
 func _reset():
-	print("reset")
 	# bubble.visible = false
 	rotation_degrees = local_rotation0
 	line.clear_points()
@@ -98,17 +95,13 @@ func _reset():
 # 🎣 鱼竿旋转动画
 func _handle_casting(delta):
 	if not rotation_speed_down:
-		print(rotation_degrees)
 		rotation_degrees -= 110 * delta * 5.0 * speed
-		print(rotation_degrees)
 		speed *= 1.01
 		curve_offset *= (1 - 0.05 * delta)
 		if rotation_degrees < -60:
 			rotation_speed_down = true
 	else:
-		print(rotation_degrees)
 		rotation_degrees -= 10 * delta * speed
-		print(rotation_degrees)
 		speed *= 0.98
 		if rotation_degrees < -75:
 			casting = false
