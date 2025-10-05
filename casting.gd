@@ -127,7 +127,7 @@ func _update_bait_position(delta):
 	var start = bait_position0
 	var end = bait_target_position
 	var duration = 0.3
-	var g = 9.8 * 2
+	var g = 9.8 * 30
 
 	var velocity = Vector2(end.x - start.x, 0) * 1.5
 	var height_offset = 4
@@ -150,7 +150,7 @@ func _update_bait_position(delta):
 func _draw_bezier(start: Vector2, end: Vector2, control1: Vector2, control2: Vector2, offset: float):
 	var dir = (end - start).normalized()
 	var normal = Vector2(-dir.y, dir.x).normalized()
-	offset *= 10
+	offset *= 15
 	control1 = start + dir * ((start.distance_to(end)) / 3) + normal * offset
 	control2 = start + dir * ((start.distance_to(end)) * 2 / 3) - normal * offset
 
