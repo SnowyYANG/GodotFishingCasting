@@ -55,7 +55,6 @@ func _process(delta):
 		_update_bait_position(delta)
 		_draw_bezier(global_position, bait_position, Vector2(1,-1), Vector2(-1,1), curve_offset)
 
-# 🧠 抛出鱼线
 func _start_casting():
 	segment_increment = 0.5
 	segment_count = 0
@@ -72,7 +71,6 @@ func _start_casting():
 	line.clear_points()
 	curve_offset = 0.3
 
-# 🧠 重置状态
 func _reset():
 	# bubble.visible = false
 	rotation_degrees = local_rotation0
@@ -92,8 +90,7 @@ func _reset():
 	bait_position = global_position
 	parabola_time = 0.0
 
-# 🎣 鱼竿旋转动画
-func _handle_casting(delta):
+func _handle_casting(delta): #rod rotation
 	if not rotation_speed_down:
 		rotation_degrees -= 110 * delta * 5.0 * speed
 		speed *= 1.01
@@ -109,13 +106,11 @@ func _handle_casting(delta):
 			curve_offset = 0
 			rotation_speed_down = false
 
-# 🧲 鱼饵下落动画
 func _handle_bait_fall(delta):
 	if curve_offset > -0.15:
 		curve_offset -= 1.0 * delta
 
-# 🎯 更新鱼饵位置（抛物线）
-func _update_bait_position(delta):
+func _update_bait_position(delta): #parabola
 	parabola_time += delta * 3
 	var start = bait_position0
 	var end = bait_target_position
@@ -139,7 +134,6 @@ func _update_bait_position(delta):
 		# bubble.visible = true
 		# bubble.rotation = 0
 
-# 🧵 绘制贝塞尔曲线
 func _draw_bezier(start: Vector2, end: Vector2, control1: Vector2, control2: Vector2, offset: float):
 	var dir = (end - start).normalized()
 	var normal = Vector2(-dir.y, dir.x).normalized()
