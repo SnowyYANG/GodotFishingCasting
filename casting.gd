@@ -117,8 +117,8 @@ func _update_bait_position(delta): #parabola
 	var duration = 0.3
 	var g = 9.8 * 30
 
-	var velocity = Vector2(end.x - start.x, 0) * 1.5
-	var height_offset = 30
+	var velocity = Vector2(end.x - start.x, 0) * 1
+	var height_offset = 45
 	var vy = (height_offset + 0.5 * g * duration * duration) * 3
 
 	var t = parabola_time
