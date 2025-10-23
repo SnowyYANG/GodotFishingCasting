@@ -1,19 +1,61 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfpnp0h2brexi"]
 
-[ext_resource type="Script" uid="uid://uxtdk0wjttp4" path="res://casting.gd" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://qqt7y3kinnql" path="res://fishingrod.png" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://uxtdk0wjttp4" path="res://player.gd" id="1_0e48y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wtcfe"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="ForearmAndRod" type="Sprite2D" parent="."]
-position = Vector2(500, 300)
-rotation = 0.699877
-scale = Vector2(2, 2)
-texture = ExtResource("1_wtcfe")
-offset = Vector2(0, -10.5)
+[node name="WaterEdge" type="Line2D" parent="."]
+points = PackedVector2Array(-9, 185, 161, 190, 278, 201, 359, 232, 425, 275, 460, 323, 489, 377, 508, 433, 520, 497, 517, 548, 502, 591, 476, 635, 433, 676)
+width = 2.0
+default_color = Color(0, 1, 1, 1)
+
+[node name="Player" type="Node2D" parent="."]
 script = ExtResource("1_0e48y")
 
-[node name="Line" type="Line2D" parent="ForearmAndRod"]
-position = Vector2(0, -20)
+[node name="Head" type="Line2D" parent="Player"]
+points = PackedVector2Array(477, 280, 479, 275, 485, 273, 490, 275, 492, 280, 490, 284, 485, 286, 479, 284, 477, 279)
+width = 2.0
+
+[node name="RightUpperArm" type="Line2D" parent="Player"]
+position = Vector2(483, 294)
+rotation = 3.6651914
+points = PackedVector2Array(0, 0, 0, 14)
+width = 2.0
+
+[node name="Forearm" type="Line2D" parent="Player/RightUpperArm"]
+position = Vector2(0, 14)
+rotation = 0.25830874
+points = PackedVector2Array(0, 0, 0, 12)
+width = 2.0
+
+[node name="Rod" type="Line2D" parent="Player/RightUpperArm/Forearm"]
+position = Vector2(0, 12)
+rotation = 0.5235988
+points = PackedVector2Array(0, -2, 0, 20)
+width = 2.0
+default_color = Color(1, 1, 0.5019608, 1)
+texture = SubResource("CompressedTexture2D_wtcfe")
+
+[node name="Line" type="Line2D" parent="Player/RightUpperArm/Forearm/Rod"]
+position = Vector2(0, 20)
 scale = Vector2(0.99999994, 0.99999994)
+points = PackedVector2Array(0.46331787, -1.9609909)
 width = 1.0
+
+[node name="Body" type="Line2D" parent="Player"]
+points = PackedVector2Array(484, 286, 481, 306)
+width = 2.0
+
+[node name="LeftArm" type="Line2D" parent="Player"]
+points = PackedVector2Array(483, 294, 488, 304, 479, 313)
+width = 2.0
+
+[node name="LeftLeg" type="Line2D" parent="Player"]
+points = PackedVector2Array(481, 306, 475, 326, 474, 344)
+width = 2.0
+
+[node name="RightLeg" type="Line2D" parent="Player"]
+points = PackedVector2Array(481, 306, 483, 325, 490, 343)
+width = 2.0
