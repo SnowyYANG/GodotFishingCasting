@@ -27,6 +27,8 @@ var curve_offset = 0.3
 
 var local_rotation0: float
 var bait_initial_velocity: Vector2
+var forearm_rotation0: float
+var rod_rotation0: float
 const g_vec = Vector2(0, 9.8) * 500
 const bait_duration = 0.35
 
@@ -35,6 +37,8 @@ func _ready():
 	local_rotation0 = upper_arm.rotation_degrees
 	bait_global_position0 = line.global_position
 	bait_global_position = bait_global_position0
+	forearm_rotation0 = forearm.rotation_degrees
+	rod_rotation0 = rod.rotation_degrees
 	_reset()
 
 func _process(delta):
@@ -87,6 +91,8 @@ func _reset():
 	bait_global_position0 = line.global_position
 	bait_global_position = bait_global_position0
 	parabola_time = 0.0
+	forearm.rotation_degrees = forearm_rotation0
+	rod.rotation_degrees = rod_rotation0
 
 func _handle_casting(delta): #rod rotation
 	if not rotation_speed_down:
@@ -95,6 +101,7 @@ func _handle_casting(delta): #rod rotation
 		curve_offset *= (1 - 0.05 * delta)
 		if upper_arm.rotation_degrees < 120:
 			rotation_speed_down = true
+		rod.rotation_degrees *= 0.85
 	else:
 		upper_arm.rotation_degrees -= 10 * delta * speed
 		speed *= 0.98
@@ -103,6 +110,9 @@ func _handle_casting(delta): #rod rotation
 			bait_down = true
 			curve_offset = 0
 			rotation_speed_down = false
+		rod.rotation_degrees *= 0.95
+	if forearm.rotation_degrees > 5:
+		forearm.rotation_degrees *= 0.95
 
 func _handle_bait_fall(delta):
 	if curve_offset > -0.15:
