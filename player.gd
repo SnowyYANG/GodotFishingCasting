@@ -106,6 +106,7 @@ func _handle_casting(delta): #rod rotation
 		upper_arm.rotation_degrees -= 10 * delta * speed
 		speed *= 0.98
 		if upper_arm.rotation_degrees < 105:
+			print('upper_arm.rotation_degrees < 105')
 			casting = false
 			bait_down = true
 			curve_offset = 0
@@ -115,7 +116,7 @@ func _handle_casting(delta): #rod rotation
 		forearm.rotation_degrees *= 0.95
 
 func _handle_bait_fall(delta):
-	if curve_offset > -0.15:
+	if curve_offset > -0.18:
 		curve_offset -= 1.0 * delta
 
 # compute unique physical initial velocity v0 such that:
